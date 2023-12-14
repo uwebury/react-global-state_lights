@@ -40,6 +40,16 @@ export default function App({ Component, pageProps }) {
     );
   }
 
+  // 17. Functions to toggle on and toggle off all lights on matching quick action buttons:
+  // To use in other Components, they will be added as props in Component:
+  function turnAllLightsOff() {
+    setLights(lights.map((light) => ({ ...light, isOn: false })));
+  }
+
+  function turnAllLightsOn() {
+    setLights(lights.map((light) => ({ ...light, isOn: true })));
+  }
+
   return (
     <Layout>
       <GlobalStyle />
@@ -51,6 +61,8 @@ export default function App({ Component, pageProps }) {
         lights={lights}
         toggleLight={toggleLight}
         lightsOnCount={lightsOnCount}
+        turnAllLightsOff={turnAllLightsOff}
+        turnAllLightsOn={turnAllLightsOn}
       />
     </Layout>
   );
