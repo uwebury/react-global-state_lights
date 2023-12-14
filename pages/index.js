@@ -1,10 +1,11 @@
 import Link from "../components/Link";
 
-export default function HomePage() {
+// 16. {lightsOnCount} added as prop and as content variable:
+export default function HomePage({ lightsOnCount }) {
   return (
     <div>
       <h1>Home</h1>
-      <p>?? light(s) are on.</p>
+      <p>{lightsOnCount} light(s) are on.</p>
       <p>
         <Link href="/rooms">All Rooms →</Link>
       </p>

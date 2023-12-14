@@ -28,14 +28,15 @@ export default function App({ Component, pageProps }) {
   // id will determine for which room the light should be on or off.
   // in the function, we will call the setter function.
 
+  // 15. Following const is not a state but a derived state for the number of lights with isOn=true.
+  // it will be handed down as (derived) state to component functions.
+  const lightsOnCount = lights.filter((light) => light.isOn).length;
+
   function toggleLight(id) {
     setLights(
-      lights.map((light) => {
-        if (light.id === id) {
-          return { ...light, isOn: !light.isOn };
-        }
-        return light;
-      })
+      lights.map((light) =>
+        light.id === id ? { ...light, isOn: !light.isOn } : light
+      )
     );
   }
 
@@ -45,7 +46,12 @@ export default function App({ Component, pageProps }) {
       {/* 10. The function toggleLight needs to be lifted down
       because it is needed in Light component where the buttons are being clicked on. 
       (Next step in Rooms)*/}
-      <Component lights={lights} toggleLight={toggleLight} {...pageProps} />
+      <Component
+        {...pageProps}
+        lights={lights}
+        toggleLight={toggleLight}
+        lightsOnCount={lightsOnCount}
+      />
     </Layout>
   );
 }
