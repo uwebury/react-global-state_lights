@@ -10,34 +10,23 @@ const StyledLights = styled.ul`
   margin: 0;
   justify-content: center;
 `;
-
-export default function Lights() {
+// 4. Function receives prop 'lights' (array);
+// in order to do that it needs to be lifted down from app.js, see step 5.
+// 12. Function receives prop toggleLight & add onToggle in Light
+export default function Lights({ lights, toggleLight }) {
   return (
     <StyledLights>
-      <li>
-        <Light name="Living Room" />
-      </li>
-      <li>
-        <Light name="Kitchen" />
-      </li>
-      <li>
-        <Light name="Bedroom" />
-      </li>
-      <li>
-        <Light name="Bathroom" />
-      </li>
-      <li>
-        <Light name="Garage" />
-      </li>
-      <li>
-        <Light name="Porch" />
-      </li>
-      <li>
-        <Light name="Garden" />
-      </li>
-      <li>
-        <Light name="Office" />
-      </li>
+      {/* 7. After prop light has been lifted down from app.js through Rooms to Lights,
+      we can use it for mapping to create a dynamic list from array: */}
+      {lights.map((light) => (
+        <li key={light.id}>
+          <Light
+            name={light.name}
+            isOn={light.isOn}
+            onToggle={() => toggleLight(light.id)}
+          />
+        </li>
+      ))}
     </StyledLights>
   );
 }

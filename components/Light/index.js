@@ -1,21 +1,11 @@
-import { useState } from "react";
 import { LightButton, Icon, Text, Name, State } from "./Light.styled";
 
-export default function Light({ name }) {
-  const [isOn, setIsOn] = useState(false);
-
-  function handleToggle() {
-    setIsOn((isOn) => !isOn);
-  }
-
+// 8. Locally managed state is being removed; step 9. in app.js.
+// 13. on Toggle prop added.
+// 14. isOn prop added, next step in Lights.
+export default function Light({ name, onToggle, isOn }) {
   return (
-    <LightButton
-      type="button"
-      onClick={() => {
-        handleToggle();
-      }}
-      $isOn={isOn}
-    >
+    <LightButton type="button" onClick={onToggle} $isOn={isOn}>
       <Icon $isOn={isOn}>💡</Icon>
       <Text>
         <Name>{name}</Name>
