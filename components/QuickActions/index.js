@@ -8,22 +8,25 @@ const StyledQuickActions = styled.div`
 `;
 
 // 19. turnAllLightsOff, turnAllLightsOn added as props and function calls.
-export default function QuickActions({ turnAllLightsOff, turnAllLightsOn }) {
+export default function QuickActions({
+  lights,
+  lightsOnCount,
+  turnAllLightsOff,
+  turnAllLightsOn,
+}) {
   return (
     <StyledQuickActions>
       <Button
         type="button"
-        onClick={() => {
-          turnAllLightsOff();
-        }}
+        onClick={turnAllLightsOff}
+        disabled={lightsOnCount === 0}
       >
         Turn all lights off
       </Button>
       <Button
         type="button"
-        onClick={() => {
-          turnAllLightsOn();
-        }}
+        onClick={turnAllLightsOn}
+        disabled={lightsOnCount === lights.length}
       >
         Turn all lights on
       </Button>
