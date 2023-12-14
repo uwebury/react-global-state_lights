@@ -51,7 +51,7 @@ export default function App({ Component, pageProps }) {
   }
 
   return (
-    <Layout>
+    <Layout isDimmed={lightsOnCount === 0}>
       <GlobalStyle />
       {/* 10. The function toggleLight needs to be lifted down
       because it is needed in Light component where the buttons are being clicked on. 
